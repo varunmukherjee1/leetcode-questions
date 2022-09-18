@@ -1,6 +1,6 @@
 import java.util.Arrays;
 
-public class Code {
+public class Code1457 {
     public class TreeNode {
       int val;
       TreeNode left;

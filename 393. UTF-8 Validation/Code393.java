@@ -1,4 +1,4 @@
-public class Code {
+public class Code393 {
 
     class Solution {
         public boolean validUtf8(int[] data) {

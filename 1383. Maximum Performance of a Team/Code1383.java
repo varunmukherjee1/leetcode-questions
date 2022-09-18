@@ -1,7 +1,7 @@
 import java.util.Arrays;
 import java.util.PriorityQueue;
 
-public class code {
+public class Code1383 {
     class Solution {
         public int maxPerformance(int n, int[] speed, int[] efficiency, int k) {
 

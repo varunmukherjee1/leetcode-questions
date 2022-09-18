@@ -1,6 +1,6 @@
 import java.util.Arrays;
 
-public class Code {
+public class Code948 {
 
     class Solution {
 

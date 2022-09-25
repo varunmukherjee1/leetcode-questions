@@ -2,25 +2,47 @@ class MyCircularQueue {
 
     int[] queue;
     int front = 0;
-    int back = 0;
+    int back = -1;
     int len = 0;
 
     public MyCircularQueue(int k) {
         queue = new int[k];
         len = k;
+        
+        for(int i = 0 ; i < k ; i++){
+            queue[i] = -1;
+        }
     }
     
     public boolean enQueue(int value) {
-        
+
+        int tempI = (back+1)%len;
+
+        if((tempI == front && queue[front] == -1) || (tempI != front)){
+
+            back = tempI;
+            queue[back] = value;
+
+            return true;
+        }
+
+        return false;
     }
     
     public boolean deQueue() {
         
+        if(queue[front] == -1){
+            return false;
+        }
+
+        queue[front] = -1;
+        front = (front+1)%len;
+        return true;
     }
     
     public int Front() {
         
-        if(front == back){
+        if(front > back && queue[front] == -1){
             return -1;
         }
 
@@ -29,7 +51,7 @@ class MyCircularQueue {
     
     public int Rear() {
         
-        if(front == back){
+        if(front > back && queue[front] == -1){
             return -1;
         }
         
@@ -38,11 +60,16 @@ class MyCircularQueue {
     
     public boolean isEmpty() {
         
-        return (front == back);
+        // return ((front > back && queue[front] == -1) || (back == len && front == 0 && queue[front] == -1));
+
+        return(((back+1)%len) == front && queue[front] == -1);
     }
     
     public boolean isFull() {
         
+        // return ((front > back && queue[front] != -1) ||  (front == 0 && back == len && queue[front] != -1));
+
+        return(((back+1)%len) == front && queue[front] != -1);
     }
 }
 

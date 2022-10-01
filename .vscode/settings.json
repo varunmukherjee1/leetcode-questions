@@ -11,5 +11,8 @@
         "1457. Pseudo-Palindromic Paths in a Binary Tree",
         "1383. Maximum Performance of a Team",
         "1680. Concatenation of Consecutive Binary Numbers"
-    ]
+    ],
+    "files.associations": {
+        "ostream": "cpp"
+    }
 }

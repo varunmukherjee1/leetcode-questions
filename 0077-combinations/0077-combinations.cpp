@@ -1,27 +1,29 @@
 class Solution {
 public:
-    void helper(int idx, int n, int k , vector<int> &curr, vector<vector<int>> &ans){
-
-        if(curr.size() == k){
-            ans.push_back(curr);
-            return;
-        }
-
-        for(int i = idx ; i <= n ; i++){
-            curr.push_back(i);
-            helper(i+1,n,k,curr,ans);
-            curr.pop_back();
-        }
-        
-    }
 
     vector<vector<int>> combine(int n, int k) {
         
-        vector<vector<int>> vec;
-        vector<int> temp;
+        vector<vector<int>> ans;
 
-        helper(1,n,k,temp,vec);
+        vector<int> vec(k,0);
+        int i = 0;
 
-        return vec;
+        while(i >= 0){
+            
+            vec[i]++;
+
+            if(vec[i] > n){
+                --i;
+            }
+            else if(i == k-1){
+                ans.push_back(vec);
+            }
+            else{
+                i++;
+                vec[i] = vec[i-1];
+            }
+        }
+
+        return ans;
     }
 };

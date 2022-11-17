@@ -1,38 +1,32 @@
 class Solution {
 public:
-    void helper(vector<int> temp , vector<int> nums ,unordered_set<int> us, vector<vector<int>>& ans){
+    void helper(vector<int> nums,unordered_set<int> st, vector<vector<int>>& ans, vector<int> temp){
 
-        int tlen = temp.size();
-        int n = nums.size();
+        int len = nums.size();
 
-        if(tlen == n){
+        if(st.size() == len){
             ans.push_back(temp);
             return;
         }
 
-        for(int i = 0 ; i < n ; i++){
-            int t = nums[i];
-
-            if(us.find(t) == us.end()){
-                temp.push_back(t);
-                us.insert(t);
-
-                helper(temp,nums,us,ans);
-
+        for(int i = 0 ; i < len ; i++){
+            if(st.find(i) == st.end()){
+                st.insert(i);
+                temp.push_back(nums[i]);
+                helper(nums,st,ans,temp);
                 temp.pop_back();
-                us.erase(us.find(t));
+                st.erase(st.find(i));
             }
         }
         
     }
 
     vector<vector<int>> permute(vector<int>& nums) {
-        
         vector<vector<int>> ans;
         vector<int> temp;
-        unordered_set<int> us;
+        unordered_set<int> st;
 
-        helper(temp,nums,us,ans);        
+        helper(nums,st,ans,temp);
 
         return ans;
     }

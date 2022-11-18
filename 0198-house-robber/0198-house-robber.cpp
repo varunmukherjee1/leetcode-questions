@@ -1,21 +1,12 @@
 class Solution {
 public:
+    int helper(int i , int n ,vector<int>& nums , vector<int>& dp){
 
-    int helper(vector<int>& nums, int i,int n, vector<int>& dp){
+        if(i >= n)  return 0;
 
-        if(i >= n){
-            return 0;
-        }
+        if(dp[i] != -1) return dp[i];
 
-        if(dp[i] != -1){
-            return dp[i];
-        }
-
-        int m1 = nums[i];
-        int m2 = helper(nums,i+1,n,dp);
-        int m3 = nums[i] + helper(nums,i+2,n,dp);
-
-        return dp[i] = (m1 > m2) ? (m1 > m3)? m1:m3 : (m2>m3)? m2:m3;
+        return dp[i] = max(helper(i+1,n,nums,dp),nums[i] + helper(i+2,n,nums,dp));
     }
 
     int rob(vector<int>& nums) {
@@ -23,6 +14,6 @@ public:
         int n = nums.size();
         vector<int> dp(n,-1);
 
-        return helper(nums,0,n,dp);
+        return helper(0,n,nums,dp);
     }
 };
